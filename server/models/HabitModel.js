@@ -4,7 +4,6 @@ const habitSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    frequency: [{ type: Date, required: true }],
     category: { type: String, required: true },
     startDate: { type: Date, default: Date.now },
     endDate: { type: Date, required: false, default: null },
@@ -13,13 +12,16 @@ const habitSchema = new mongoose.Schema(
     notes: { type: String, required: false, default: "" },
     completed: { type: Boolean, default: false },
     completionDate: { type: Date },
-    reminders: [
-      {
-        time: { type: Date, required: true },
-        message: { type: String, required: true },
-      },
-    ],
-
+    reminderDays: {
+      type: [Number],
+      default: [],
+      required: true,
+    },
+    reminderTimes: {
+      type: [String],
+      default: [],
+      required: true,
+    },
     isReminderEnabled: { type: Boolean, default: false },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
