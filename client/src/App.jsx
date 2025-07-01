@@ -4,7 +4,9 @@ import Habitform from "./components/Habitform";
 const App = () => {
   return (
     <div className=""> 
+   <Habitform/>
     </div>
+
   );
 };
 
