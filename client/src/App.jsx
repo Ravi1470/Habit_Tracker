@@ -7,12 +7,10 @@ const App = () => {
   return (
     <div className=""> 
     <HabitCard
-     title="Drinking Water"
-     description="Drink 8 glasses of water daily"
-     completed={true}
-     currentStreak={7}
+      title="Morning Run"
+      description="Go for a 15-minute run."
+      completed={true}
     />
-
     </div>
 
   );
