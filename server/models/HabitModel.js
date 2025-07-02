@@ -12,6 +12,11 @@ const habitSchema = new mongoose.Schema(
     notes: { type: String, required: false, default: "" },
     completed: { type: Boolean, default: false },
     completionDate: { type: Date },
+    priority: {
+      type: String,
+      enum: ["low", "medium", "high"],
+      default: "medium",
+    },
     reminderDays: {
       type: [Number],
       default: [],
