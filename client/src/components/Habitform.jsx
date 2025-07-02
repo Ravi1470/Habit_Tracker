@@ -107,7 +107,7 @@ export const Habitform = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <div>
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <FaClipboardList /> Title
               </label>
               <input
@@ -121,7 +121,7 @@ export const Habitform = () => {
             </div>
 
             <div>
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <MdNotes /> Description
               </label>
               <input
@@ -135,7 +135,7 @@ export const Habitform = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <FaCheckCircle /> Select Days
               </label>
               <div className="flex flex-wrap gap-2">
@@ -157,7 +157,7 @@ export const Habitform = () => {
             </div>
 
             <div>
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <FaFire /> Priority
               </label>
               <select
@@ -174,7 +174,7 @@ export const Habitform = () => {
             </div>
 
             <div>
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <MdCategory /> Category
               </label>
               <select
@@ -195,7 +195,7 @@ export const Habitform = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <FaRegClock /> Preferred Time Slots
               </label>
 
@@ -237,7 +237,7 @@ export const Habitform = () => {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block font-semibold mb-1 flex items-center gap-1">
+              <label className=" font-semibold mb-1 flex items-center gap-1">
                 <MdNotes /> Notes
               </label>
               <textarea
