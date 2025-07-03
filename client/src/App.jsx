@@ -6,8 +6,7 @@ import Habitform from "./components/Habitform";
 const App = () => {
   return (
     <div className=""> 
-      </div>
-
+    <div/>
   );
 };
 
