@@ -6,17 +6,18 @@ import {
   deleteHabit,
   toggleReminder,
 } from "../controllers/habitController.js";
+import { protect } from "../middleware/protect.js";
 
 const router = Router();
 
-router.get("/", getHabits);
+router.get("/", protect, getHabits);
 
-router.post("/", createHabit);
+router.post("/", protect, createHabit);
 
-router.put("/:id", updateHabit);
+router.put("/:id", protect, updateHabit);
 
-router.delete("/:id", deleteHabit);
+router.delete("/:id", protect, deleteHabit);
 
-router.put("/:id/reminder", toggleReminder);
+router.put("/:id/reminder", protect, toggleReminder);
 
 export default router;
