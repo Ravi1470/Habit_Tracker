@@ -13,3 +13,8 @@ export const GetHabit = async () => {
     throw error;
   }
 };
+
+export const deleteHabit = async (id) => {
+  const response = await axios.delete(`http://localhost:3000/api/habits/${id}`);
+  return response.data;
+};

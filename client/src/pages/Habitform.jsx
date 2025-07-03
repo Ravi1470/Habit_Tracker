@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-
 import { createHabit } from "../Services/Hapit";
-
 import {
   FaRegClock,
   FaClipboardList,
@@ -10,10 +8,10 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { MdCategory, MdNotes, MdOutlineRestartAlt } from "react-icons/md";
-import Input from "./ui/Form/Input";
-import TextArea from "./ui/Form/TextArea";
+import Input from "../components/ui/Form/Input";
+import TextArea from "../components/ui/Form/TextArea";
 
-// 🕒 Convert local "HH:mm" to UTC ISO string
+// Convert local "HH:mm" to UTC ISO string
 const convertTimeToUTC = (timeString) => {
   const [hours, minutes] = timeString.split(":").map(Number);
   const localDate = new Date();
@@ -36,9 +34,8 @@ export const Habitform = () => {
     notes: "",
   });
 
-  const { isPending, mutate } = useMutation({
-    mutationFn: createHabit,
-  });
+  const { isPending, mutate } = useMutation({ mutationFn: createHabit });
+
   const days = [
     "SUNDAY",
     "MONDAY",
@@ -88,7 +85,7 @@ export const Habitform = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const dayToNumber = {
@@ -141,7 +138,7 @@ export const Habitform = () => {
             className="w-[70px] h-auto object-contain rounded"
           />
           <h1
-            className={`text-5xl font-extrabold ${
+            className={`text-4xl font-extrabold ${
               isDark ? "text-white" : "text-gray-800"
             }`}>
             Habit Form
@@ -149,34 +146,42 @@ export const Habitform = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className=" font-semibold mb-1 flex items-center gap-1">
-                <FaClipboardList /> Title
-              </label>
-              <Input
-                type="text"
-                name="plan"
-                value={form.plan}
-                onChange={handleChange}
-                placeholder="Enter the Title"
-              />
+          <div className="grid grid-cols-1 gap-6">
+            {/* Title and Description - responsive */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="font-semibold mb-1 flex items-center gap-1">
+                  <FaClipboardList /> Title
+                </label>
+                <Input
+                  type="text"
+                  name="plan"
+                  maxLength={20}
+                  required
+                  value={form.plan}
+                  onChange={handleChange}
+                  placeholder="Enter the Title"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold mb-1 flex items-center gap-1">
+                  <MdNotes /> Description
+                </label>
+                <Input
+                  type="text"
+                  name="description"
+                  value={form.description}
+                  maxLength={50}
+                  required
+                  onChange={handleChange}
+                  placeholder="Habit description"
+                />
+              </div>
             </div>
 
+            {/* Select Days */}
             <div>
-              <label className="font-semibold mb-1 flex items-center gap-1">
-                <MdNotes /> Description
-              </label>
-              <Input
-                type="text"
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                placeholder="Habit description"
-              />
-            </div>
-
-            <div className="col-span-2">
               <label className="font-semibold mb-1 flex items-center gap-1">
                 <FaCheckCircle /> Select Days
               </label>
@@ -197,47 +202,51 @@ export const Habitform = () => {
               </div>
             </div>
 
-            <div>
-              <label className="font-semibold mb-1 flex items-center gap-1">
-                <FaFire /> Priority
-              </label>
-              <select
-                name="priority"
-                value={form.priority}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-md bg-sky-950 text-white focus:ring-2 focus:ring-orange-400">
-                <option value="">Select Priority</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
+            {/* Priority & Category */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="font-semibold mb-1 flex items-center gap-1">
+                  <FaFire /> Priority
+                </label>
+                <select
+                  name="priority"
+                  value={form.priority}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded-md bg-sky-950 text-white focus:ring-2 focus:ring-orange-400">
+                  <option value="">Select Priority</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="font-semibold mb-1 flex items-center gap-1">
+                  <MdCategory /> Category
+                </label>
+                <select
+                  name="category"
+                  value={form.category}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded-md bg-sky-950 text-white focus:ring-2 focus:ring-purple-400">
+                  <option value="">Select a category</option>
+                  <option>Health</option>
+                  <option>Running</option>
+                  <option>Study</option>
+                  <option>Meditation</option>
+                  <option>Fitness</option>
+                  <option>Reading</option>
+                  <option>Custom</option>
+                </select>
+              </div>
             </div>
 
+            {/* Time Slots */}
             <div>
-              <label className="font-semibold mb-1 flex items-center gap-1">
-                <MdCategory /> Category
-              </label>
-              <select
-                name="category"
-                value={form.category}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-md bg-sky-950 text-white focus:ring-2 focus:ring-purple-400">
-                <option value="">Select a category</option>
-                <option>Health</option>
-                <option>Running</option>
-                <option>Study</option>
-                <option>Meditation</option>
-                <option>Fitness</option>
-                <option>Reading</option>
-                <option>Custom</option>
-              </select>
-            </div>
-
-            <div className="col-span-2">
               <label className="font-semibold mb-1 flex items-center gap-1">
                 <FaRegClock /> Preferred Time Slots
               </label>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                 <input
                   type="time"
                   value={timeInput}
@@ -271,7 +280,8 @@ export const Habitform = () => {
               )}
             </div>
 
-            <div className="md:col-span-2">
+            {/* Notes */}
+            <div>
               <label className="font-semibold mb-1 flex items-center gap-1">
                 <MdNotes /> Notes
               </label>
@@ -284,13 +294,14 @@ export const Habitform = () => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center pt-8">
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8">
             <button
               type="submit"
               className={`${
                 shake ? "shake" : ""
               } bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition-all duration-300 font-semibold`}>
-              Schedule Now
+              {isPending ? "Loading..." : "Schedule Now"}
             </button>
 
             <button
