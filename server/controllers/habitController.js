@@ -1,7 +1,7 @@
 import Habit from "../models/HabitModel.js";
 
 // Get all habits
-const getHabits = async (req, res) => {
+const getHabits = async (req, res, next) => {
   try {
     const habits = await Habit.find();
     res.status(200).json(habits);
@@ -43,7 +43,7 @@ const createHabit = async (req, res) => {
 };
 
 // Update a habit by ID
-const updateHabit = async (req, res) => {
+const updateHabit = async (req, res, next) => {
   try {
     const { id } = req.params;
     const updates = req.body;
@@ -65,7 +65,7 @@ const updateHabit = async (req, res) => {
 };
 
 // Delete a habit by ID
-const deleteHabit = async (req, res) => {
+const deleteHabit = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedHabit = await Habit.findByIdAndDelete(id);
@@ -82,7 +82,7 @@ const deleteHabit = async (req, res) => {
 };
 
 // Toggle isReminderEnabled
-const toggleReminder = async (req, res) => {
+const toggleReminder = async (req, res, next) => {
   try {
     const { id } = req.params;
 

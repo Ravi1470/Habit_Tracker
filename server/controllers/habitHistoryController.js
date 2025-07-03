@@ -1,5 +1,5 @@
 import HabitHistory from "../models/HabitHistoryModel.js";
-const getHabitHistory = async (req, res) => {
+const getHabitHistory = async (req, res, next) => {
   try {
     const { habitId } = req.params;
     const { days } = req.query;
@@ -30,7 +30,7 @@ const getHabitHistory = async (req, res) => {
   }
 };
 
-const createHabitHistory = async (req, res) => {
+const createHabitHistory = async (req, res, next) => {
   try {
     const { habitId, status, notes } = req.body;
 
