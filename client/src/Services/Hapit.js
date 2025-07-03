@@ -4,7 +4,12 @@ export const createHabit = async (habits) => {
   return axios.post("http://localhost:3000/api/habits", habits);
 };
 
-export const getHabit = async () => {
-  const res = await axios.get("http://localhost:3000/api/habits"); // adjust API path
-  return res.data; // make sure the backend sends data in expected format
+export const GetHabit = async () => {
+  try {
+    const response = await axios.get("http://localhost:3000/api/habits");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching habits:", error);
+    throw error;
+  }
 };

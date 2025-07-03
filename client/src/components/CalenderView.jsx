@@ -1,4 +1,3 @@
-import React from "react";
 
 const CalenderView = ({ weeks, currentDate }) => {
   const today = new Date();

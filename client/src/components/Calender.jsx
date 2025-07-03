@@ -1,32 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CalenderView from "./CalenderView";
 import { useQuery } from "@tanstack/react-query";
-import { getHabit } from "../Services/Hapit";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const { data } = useQuery({
-    queryKey: ["create habit"],
-    queryFn: getHabit(),
-  });
-  const [ddata, setData] = useState();
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/habits");
-        const data = await res.json();
-        setData(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  });
-  console.log(ddata);
-
+ 
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const startDay = firstDay.getDay();
