@@ -10,9 +10,9 @@ const router = express.Router();
 router.get("/google", googleLogin);
 router.get("/google/callback", googleCallback);
 router.get("/me", getCurrentUser);
-router.get("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   res.clearCookie("token");
-  res.redirect(process.env.FRONTEND_URL || "http://localhost:5173");
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 export default router;
