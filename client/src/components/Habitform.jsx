@@ -207,9 +207,9 @@ export const Habitform = () => {
                 onChange={handleChange}
                 className="w-full p-3 border rounded-md bg-sky-950 text-white focus:ring-2 focus:ring-orange-400">
                 <option value="">Select Priority</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
               </select>
             </div>
 
