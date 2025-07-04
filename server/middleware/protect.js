@@ -10,20 +10,20 @@ export const protect = async (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-      return res.redirect(process.env.FRONTEND_URL || "http://localhost:5173");
+      res.status(404).json({ message: "try to login" });
     }
 
     const decoded = jwt.verify(token, JWT_SECRET);
 
     const user = await User.findById(decoded.id).select("-__v");
     if (!user) {
-      return res.redirect(process.env.FRONTEND_URL || "http://localhost:5173");
+      res.status(404).json({ message: "try to login again" });
     }
 
     req.user = user; // ✅ attach user to request
     next();
   } catch (err) {
     console.error("JWT verification error:", err.message);
-    return res.redirect(process.env.FRONTEND_URL || "http://localhost:5173");
+    res.status(500).json({ message: "internal server error" });
   }
 };
