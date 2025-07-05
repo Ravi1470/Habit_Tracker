@@ -105,11 +105,11 @@ export const Habitform = () => {
     const utcTimes = timeSlots.map(convertTimeToUTC);
 
     const payload = {
-      title: form.plan,
-      description: form.description,
-      category: form.category,
-      priority: form.priority,
-      notes: form.notes,
+      title: form?.plan,
+      description: form?.description,
+      category: form?.category,
+      priority: form?.priority,
+      notes: form?.notes,
       reminderDays,
       reminderTimes: utcTimes,
       isReminderEnabled: reminderDays.length > 0 && utcTimes.length > 0,
@@ -195,7 +195,7 @@ export const Habitform = () => {
                       selectedDays.includes(day)
                         ? "bg-green-600 text-white border-green-600"
                         : "bg-sky-950 text-white border-gray-300 hover:bg-green-600"
-                    }`}>
+                    } cursor-pointer`}>
                     {day}
                   </button>
                 ))}
@@ -256,7 +256,7 @@ export const Habitform = () => {
                 <button
                   type="button"
                   onClick={handleTimeAdd}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer">
                   Add
                 </button>
               </div>
@@ -271,7 +271,7 @@ export const Habitform = () => {
                       <button
                         type="button"
                         onClick={() => handleTimeRemove(index)}
-                        className="text-red-500 hover:text-red-700 font-bold">
+                        className="text-red-500 hover:text-red-700 font-bold cursor-pointer">
                         &times;
                       </button>
                     </div>
@@ -300,7 +300,7 @@ export const Habitform = () => {
               type="submit"
               className={`${
                 shake ? "shake" : ""
-              } bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition-all duration-300 font-semibold`}>
+              } bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 cursor-pointer rounded-lg shadow-md hover:scale-105 transition-all duration-300 font-semibold`}>
               {isPending ? "Loading..." : "Schedule Now"}
             </button>
 
@@ -317,7 +317,7 @@ export const Habitform = () => {
                 setTimeSlots([]);
                 setSelectedDays([]);
               }}
-              className="flex items-center gap-2 bg-gradient-to-r from-red-400 to-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition-all duration-300 font-semibold">
+              className="flex items-center cursor-pointer gap-2 bg-gradient-to-r from-red-400 to-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition-all duration-300 font-semibold">
               <MdOutlineRestartAlt size={18} /> Reset
             </button>
           </div>
