@@ -69,7 +69,7 @@ export const googleCallback = async (req, res) => {
     // ✅ Redirect to frontend
     return res.redirect(FRONTEND_URL);
   } catch (error) {
-    console.error("OAuth error:", error.response?.data || error.message);
+    console.error("OAuth error:", error.response?.data || error);
     return res.redirect(`${FRONTEND_URL}/login`);
   }
 };

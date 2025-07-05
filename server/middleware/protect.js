@@ -21,6 +21,7 @@ export const protect = async (req, res, next) => {
     }
 
     req.user = user; // ✅ attach user to request
+    console.log(user);
     next();
   } catch (err) {
     console.error("JWT verification error:", err.message);
