@@ -32,8 +32,9 @@ const createHabit = async (req, res) => {
       priority,
       reminderDays,
       reminderTimes,
+      userId: req.user._id,
     });
-
+    console.log(req.user);
     await newHabit.save();
     res.status(201).json(newHabit);
   } catch (error) {

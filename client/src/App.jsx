@@ -1,17 +1,27 @@
-
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import GoogleSignIn from "./pages/GoogleSignIn";
-import Home from "./pages/Home";
-
+import Habit from "./pages/Habit";
+import Habitform from "./pages/Habitform";
+import CountTime from "./components/ui/Form/CountTime"
 
 const App = () => {
   return (
-   <div>
-    <Routes>
-      <Route path="/login" element={<GoogleSignIn />} />
-      <Route path="/" element={<Home />} />
-    </Routes>
-   </div>
+    <div>
+      <Routes>
+        <Route
+          path="/login"
+          element={<GoogleSignIn />}
+        />
+        <Route
+          path="/"
+          element={<Habit />}
+        />
+        <Route
+          path="/CreateForm"
+          element={<Habitform />}
+        />
+      </Routes>
+    </div>
   );
 };
 
