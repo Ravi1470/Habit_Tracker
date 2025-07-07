@@ -11,6 +11,17 @@ const getHabits = async (req, res, next) => {
   }
 };
 
+const getHabit = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const habit = await Habit.find(id);
+    res.status(200).json(habit);
+  } catch (error) {
+    console.error("Error fetching habit:", error);
+    res.status(500).json({ error: "Failed to fetch habit" });
+  }
+};
+
 // Create a new habit
 const createHabit = async (req, res) => {
   try {
@@ -103,4 +114,11 @@ const toggleReminder = async (req, res, next) => {
   }
 };
 
-export { getHabits, createHabit, updateHabit, deleteHabit, toggleReminder };
+export {
+  getHabits,
+  getHabit,
+  createHabit,
+  updateHabit,
+  deleteHabit,
+  toggleReminder,
+};

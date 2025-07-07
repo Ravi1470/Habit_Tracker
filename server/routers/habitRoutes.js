@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   getHabits,
+  getHabit,
   createHabit,
   updateHabit,
   deleteHabit,
@@ -11,6 +12,8 @@ import { protect } from "../middleware/protect.js";
 const router = Router();
 
 router.get("/", protect, getHabits);
+
+router.get("/:id", protect, getHabit);
 
 router.post("/", protect, createHabit);
 
